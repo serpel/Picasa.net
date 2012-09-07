@@ -33,9 +33,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ext.Net, Version=1.5.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
+    <Reference Include="Ext.Net">
+      <HintPath>..\..\..\..\Downloads\Ext.NET.Community.1.5.0\Ext.NET.Community.1.5.0\lib\Ext.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Apps, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e6feebfe441b89cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Ext.Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Apps.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Client, Version=2.1.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Contacts, Version=2.1.0.0, Culture=neutral, PublicKeyToken=7e065189dd4b982f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Contacts.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Extensions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Photos, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a25b50f2e8e3887a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Photos.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -65,6 +84,7 @@
     <Content Include="css\bootstrap-responsive.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\login.css" />
     <Content Include="DetailsAlbum.aspx" />
     <Content Include="EditAlbum.aspx" />
     <Content Include="img\Corvette.png" />
@@ -72,12 +92,16 @@
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="img\im.jpg" />
     <Content Include="img\lambo.jpg" />
+    <Content Include="img\logo_picasa_large.png" />
     <Content Include="img\mustang.jpg" />
+    <Content Include="img\pika.png" />
     <Content Include="img\test320x200.jpg" />
+    <Content Include="img\watermark.png" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="login.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -153,6 +177,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="picassa_info.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
