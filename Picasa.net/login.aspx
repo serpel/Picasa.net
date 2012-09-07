@@ -23,9 +23,6 @@
 </a>
 </h1>
 
-
-
-
 <div class="header">
     <p class="download windows">
     <asp:HyperLink ID="GotoAuthSubLink" runat="server"/>

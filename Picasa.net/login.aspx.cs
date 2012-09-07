@@ -17,6 +17,19 @@ namespace Picasa.net
 {
     public partial class login : System.Web.UI.Page
     {
+
+        private static PicasaService m_picasaService;
+
+        public static PicasaService PicasaService
+        {
+            get
+            {
+                if (m_picasaService == null)
+                    m_picasaService = new PicasaService("PhotoBrowser");
+                return m_picasaService;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             GotoAuthSubLink.Visible = false;
@@ -27,21 +40,33 @@ namespace Picasa.net
             }
             else if (Request.QueryString["token"] != null)
             {
-                GAuthSubRequestFactory authFactory = new GAuthSubRequestFactory("lh2","exampleCo-exampleApp-1");
-                authFactory.Token = (String)Session["token"];
-                String token = Request.QueryString["token"];
-                PicasaService service = new PicasaService(authFactory.ApplicationName);
-                service.RequestFactory = authFactory;
-                AlbumQuery query = new AlbumQuery(PicasaQuery.CreatePicasaUri("default"));
-                /*PicasaFeed feed = service.Query(query);
+                //Session["token"] = Request.QueryString["token"];
+                //GAuthSubRequestFactory authFactory = new GAuthSubRequestFactory("lh2","picasa.net");
+                //authFactory.Token = (String)Session["token"];
+                //String token = Request.QueryString["token"];
 
+                AlbumQuery albumQuery = new AlbumQuery();
+                albumQuery.Uri = new Uri(PicasaQuery.CreatePicasaUri("diegoturciostc@gmail.com"));
+                albumQuery.Access = PicasaQuery.AccessLevel.AccessPublic;
+
+                PicasaFeed feed = PicasaService.Query(albumQuery);
+
+                Session["feed"] = feed;
+
+
+                List<PicasaEntry> tmp = new List<PicasaEntry>();
                 foreach (PicasaEntry entry in feed.Entries)
                 {
-                    AlbumAccessor ac = new AlbumAccessor(entry);
+                    tmp.Add(entry);
+                    //AlbumAccessor ac = new AlbumAccessor(entry);
+                }
 
-                }*/
-                
-                Session["token"] = AuthSubUtil.exchangeForSessionToken(token, null).ToString();
+                Session["lt"] = tmp;
+
+
+
+                //Response.Write("<script type='text/javascript'>alert("+txtAlbum+");</script>");       
+                //Session["token"] = AuthSubUtil.exchangeForSessionToken(token, null).ToString();
                 Response.Redirect(Request.Url.AbsolutePath, true);
             }
             else //no auth data, print link

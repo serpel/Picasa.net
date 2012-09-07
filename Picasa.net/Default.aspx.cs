@@ -18,15 +18,7 @@ namespace Picasa.net
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*AlbumQuery query = new AlbumQuery(PicasaQuery.CreatePicasaUri("default"));
-            PicasaFeed feed = picassa_info.service.Query(query);
-
-            foreach (PicasaEntry entry in feed.Entries)
-            {
-                //Console.WriteLine(entry.Title.Text);
-                AlbumAccessor ac = new AlbumAccessor(entry);
-                //Console.WriteLine(ac.NumPhotos);
-            }*/
+          
         }
     }
 }

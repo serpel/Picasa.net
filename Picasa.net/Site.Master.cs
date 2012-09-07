@@ -11,7 +11,11 @@ namespace Picasa.net
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!Page.IsPostBack)
+            {
+                this.Repeater1.DataSource = Session["lt"];
+                this.Repeater1.DataBind();
+            }
         }
     }
 }
