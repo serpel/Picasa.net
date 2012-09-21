@@ -40,34 +40,15 @@ namespace Picasa.net
             }
             else if (Request.QueryString["token"] != null)
             {
-                //Session["token"] = Request.QueryString["token"];
-                //GAuthSubRequestFactory authFactory = new GAuthSubRequestFactory("lh2","picasa.net");
-                //authFactory.Token = (String)Session["token"];
-                //String token = Request.QueryString["token"];
-
                 AlbumQuery albumQuery = new AlbumQuery();
                 albumQuery.Uri = new Uri(PicasaQuery.CreatePicasaUri("diegoturciostc@gmail.com"));
                 albumQuery.Access = PicasaQuery.AccessLevel.AccessPublic;
 
                 PicasaFeed feed = PicasaService.Query(albumQuery);
 
-                Session["feed"] = feed;
+                Session["lt"] = feed.Entries;
 
-
-                List<PicasaEntry> tmp = new List<PicasaEntry>();
-                foreach (PicasaEntry entry in feed.Entries)
-                {
-                    tmp.Add(entry);
-                    //AlbumAccessor ac = new AlbumAccessor(entry);
-                }
-
-                Session["lt"] = tmp;
-
-
-
-                //Response.Write("<script type='text/javascript'>alert("+txtAlbum+");</script>");       
-                //Session["token"] = AuthSubUtil.exchangeForSessionToken(token, null).ToString();
-                Response.Redirect(Request.Url.AbsolutePath, true);
+                Response.Redirect("Default.aspx" , true);
             }
             else //no auth data, print link
             {
