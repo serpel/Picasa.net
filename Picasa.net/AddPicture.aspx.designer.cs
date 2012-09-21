@@ -58,6 +58,15 @@ namespace Picasa.net {
         protected global::Ext.Net.FileUploadField FileUploadField1;
         
         /// <summary>
+        /// SaveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button SaveButton;
+        
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>
