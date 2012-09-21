@@ -6,19 +6,21 @@
     {
 
         ArrayList list = new ArrayList();
+        ArrayList list1 = new ArrayList();
         foreach (Google.GData.Photos.PicasaEntry entry in Session["lt"] as Google.GData.Client.AtomEntryCollection)
         {
             Google.GData.Photos.AlbumAccessor ac = new Google.GData.Photos.AlbumAccessor(entry);
             list.Add(ac.AlbumTitle);
+            list1.Add(ac.Id);
         }
 
-        StringBuilder store_buil=new StringBuilder();
         List<object[]> data = new List<object[]>();
         
         for (int i = 0; i < list.Count; i++)
         {
             String name=list[i].ToString();
-            data.Add(new object [] {name});
+            String id = list1[i].ToString();
+            data.Add(new object [] {name,id});
         }
         this.Store1.DataSource = data;
         
@@ -40,6 +42,7 @@
                 <ext:ArrayReader>
                     <Fields>
                         <ext:RecordField Name="abbr" />
+                        <ext:RecordField Name="id" />
                     </Fields>
                 </ext:ArrayReader>
             </Reader>            
@@ -54,13 +57,36 @@
             <ext:Parameter Name="msgTarget" Value="side" Mode="Value" />
         </Defaults>
         <Items>
-            <ext:ComboBox ID="ComboBox1" runat="server" DisplayField="abbr" ValueField="abbr" FieldLabel="Nombre del Album"
+            <ext:ComboBox ID="ComboBox1" runat="server" DisplayField="abbr" ValueField="id" FieldLabel="Nombre del Album"
                 StoreID="Store1" Editable="false" TypeAhead="true" Mode="Local" ForceSelection="true"
                 EmptyText="Seleccione un album..." Resizable="true" SelectOnFocus="true" />
             <ext:FileUploadField ID="FileUploadField1" runat="server" EmptyText="Select an image"
-                FieldLabel="Photo" ButtonText="" Icon="ImageAdd" />
+                FieldLabel="Photo" ButtonText="" Icon="ImageAdd" >
+                <DirectEvents>
+                <FileSelected OnEvent="FileSelected" />
+            </DirectEvents>
+                </ext:FileUploadField>
         </Items>
         <Buttons>
+         <ext:Button ID="SaveButton" runat="server" Text="Save">
+                    <DirectEvents>
+                        <Click 
+                            OnEvent="UploadClick"
+                            Before="if (!#{BasicForm}.getForm().isValid()) { return false; } 
+                                Ext.Msg.wait('Uploading your photo...', 'Uploading');"
+                                
+                            Failure="Ext.Msg.show({ 
+                                title   : 'Error', 
+                                msg     : 'Error during uploading', 
+                                minWidth: 200, 
+                                modal   : true, 
+                                icon    : Ext.Msg.ERROR, 
+                                buttons : Ext.Msg.OK 
+                            });">
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+
             <ext:Button ID="Button1" runat="server" Icon="Disk" Text="Submit">
         <DirectEvents>
             <Click OnEvent="on_Click">
