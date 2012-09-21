@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ext.Net">
-      <HintPath>..\..\..\..\Downloads\Ext.NET.Community.1.5.0\Ext.NET.Community.1.5.0\lib\Ext.Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Ext.NET.Pro.1.5.0\lib\Ext.Net.dll</HintPath>
     </Reference>
     <Reference Include="Google.GData.Apps, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e6feebfe441b89cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -101,6 +101,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="js\data-view-plugins.js" />
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -200,6 +201,12 @@
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Picasa.Logic\Picasa.Logic.csproj">
+      <Project>{A5CE3560-91AC-422A-B51F-77666F2BA313}</Project>
+      <Name>Picasa.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

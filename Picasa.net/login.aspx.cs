@@ -10,6 +10,7 @@ using Google.GData.Photos;
 using Google.GData.Client;
 using Google.GData.Extensions;
 using Google.GData.Extensions.Location;
+using Picasa.Logic;
 using Picasa.net;
 
 
@@ -40,15 +41,30 @@ namespace Picasa.net
             }
             else if (Request.QueryString["token"] != null)
             {
+                User u = new User();
+                u.Username = "diegoturciostc@gmail.com";
+                
+
                 AlbumQuery albumQuery = new AlbumQuery();
-                albumQuery.Uri = new Uri(PicasaQuery.CreatePicasaUri("diegoturciostc@gmail.com"));
+                albumQuery.Uri = new Uri(PicasaQuery.CreatePicasaUri(u.Username));
                 albumQuery.Access = PicasaQuery.AccessLevel.AccessPublic;
 
                 PicasaFeed feed = PicasaService.Query(albumQuery);
 
+                Session["feed"] = feed;
                 Session["lt"] = feed.Entries;
+                Session["service"] = PicasaService;
+                Session["user"] = u;
 
-                Response.Redirect("Default.aspx" , true);
+                if (feed.Entries.Count > 0)
+                {
+                    AlbumAccessor myAlbum = new AlbumAccessor((PicasaEntry)feed.Entries[0]);
+                    Response.Redirect("Default.aspx?album=" + myAlbum.Id, true);
+                }
+                else
+                {
+                    Response.Redirect("Default.aspx", true);
+                }
             }
             else //no auth data, print link
             {
