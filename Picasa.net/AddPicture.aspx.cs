@@ -11,6 +11,7 @@ using Google.GData.Client;
 using Google.GData.Extensions;
 
 using Google.GData.Extensions.Location;
+using Picasa.Logic;
 
 namespace Picasa.net
 {
@@ -24,33 +25,37 @@ namespace Picasa.net
 
         public void on_Click(object sender, DirectEventArgs e)
         {
-            String name = ComboBox1.SelectedItem.Value;
-
-            string path = this.FileUploadField1.FileName;
-            path = Server.MapPath(path);
-
-            Uri postUri = new Uri(PicasaQuery.CreatePicasaUri("diegoturciostc@gmail.com","5680246730142935889"));
-
-            System.IO.Stream fileInfo = this.FileUploadField1.PostedFile.InputStream;
-            int buffer=1024*1024;
-            System.IO.FileStream filestream = null;//new System.IO.FileStream(path, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Write);
-            filestream = System.IO.File.Create(path);
-
-            filestream.SetLength(fileInfo.Length);
-            int bytesRead = -1;
-            byte[] bytes = new byte[buffer];
-            while ((bytesRead = fileInfo.Read(bytes,0,buffer) ) >0)
+            if (Session["service"] != null && Session["user"]!=null)
             {
-                filestream.Write(bytes, 0, bytesRead);
-            }
-            PicasaService tmp=Session["service"] as PicasaService;
+                //String name = ComboBox1.SelectedItem.Value;
 
-            PicasaEntry entry = (PicasaEntry)tmp.Insert(postUri, filestream, "image/jpeg", path);
-            filestream.Close();
+                string path = this.FileUploadField1.FileName;
+                path = Server.MapPath(path);
 
-            if (System.IO.File.Exists(path))
-            {
-                System.IO.File.Delete(path);
+                User u = Session["user"] as User;
+                Uri postUri = new Uri(PicasaQuery.CreatePicasaUri("diegoturciostc", "5680246730142935889"));
+
+                System.IO.Stream fileInfo = this.FileUploadField1.PostedFile.InputStream;
+                int buffer = 1024 * 1024;
+                System.IO.FileStream filestream = null;//new System.IO.FileStream(path, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Write);
+                filestream = System.IO.File.Create(path);
+
+                filestream.SetLength(fileInfo.Length);
+                int bytesRead = -1;
+                byte[] bytes = new byte[buffer];
+                while ((bytesRead = fileInfo.Read(bytes, 0, buffer)) > 0)
+                {
+                    filestream.Write(bytes, 0, bytesRead);
+                }
+                PicasaService tmp = Session["service"] as PicasaService;
+
+                PicasaEntry entry = (PicasaEntry)tmp.Insert(postUri, filestream, "image/jpeg", path);
+                filestream.Close();
+
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
             }
         }
 

@@ -20,18 +20,15 @@ namespace Picasa.net
         {
             if(!Page.IsPostBack)
             {
-                if (Session["lt"] != null && Session["feed"] != null)
+                if (Session["feed"] != null)
                 {
                     PicasaFeed feed = Session["feed"] as PicasaFeed;
 
-                    //int count = 0;
-                    //foreach (PicasaEntry entry in feed.Entries)
-                    //{
-                    //    AlbumAccessor myAlbum = new AlbumAccessor((PicasaEntry)entry);
-                    //    entry.Etag = myAlbum.Id;
-                    //    feed.Entries[count] = entry;
-                    //    count++;
-                    //}
+                    foreach (PicasaEntry entry in feed.Entries)
+                    {
+                        AlbumAccessor myAlbum = new AlbumAccessor((PicasaEntry)entry);
+                        entry.Etag = myAlbum.Id;
+                    }
                     this.Repeater1.DataSource = feed.Entries;
                     this.Repeater1.DataBind();
                 }

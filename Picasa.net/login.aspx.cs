@@ -43,16 +43,17 @@ namespace Picasa.net
             {
                 User u = new User();
                 u.Username = "diegoturciostc@gmail.com";
-                
+                u.Password = "87654321q";
+
+                PicasaService.setUserCredentials(u.Username, u.Password);
 
                 AlbumQuery albumQuery = new AlbumQuery();
                 albumQuery.Uri = new Uri(PicasaQuery.CreatePicasaUri(u.Username));
-                albumQuery.Access = PicasaQuery.AccessLevel.AccessPublic;
+                //albumQuery.Access = PicasaQuery.AccessLevel.AccessPublic;
 
                 PicasaFeed feed = PicasaService.Query(albumQuery);
 
                 Session["feed"] = feed;
-                Session["lt"] = feed.Entries;
                 Session["service"] = PicasaService;
                 Session["user"] = u;
 

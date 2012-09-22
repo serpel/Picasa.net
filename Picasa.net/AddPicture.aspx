@@ -5,7 +5,7 @@
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        ArrayList list = new ArrayList();
+       /* ArrayList list = new ArrayList();
         ArrayList list1 = new ArrayList();
         foreach (Google.GData.Photos.PicasaEntry entry in Session["lt"] as Google.GData.Client.AtomEntryCollection)
         {
@@ -24,7 +24,7 @@
         }
         this.Store1.DataSource = data;
         
-        this.Store1.DataBind();
+        this.Store1.DataBind();*/
         
     }
 </script>
@@ -57,9 +57,9 @@
             <ext:Parameter Name="msgTarget" Value="side" Mode="Value" />
         </Defaults>
         <Items>
-            <ext:ComboBox ID="ComboBox1" runat="server" DisplayField="abbr" ValueField="id" FieldLabel="Nombre del Album"
+            <%--<ext:ComboBox ID="ComboBox1" runat="server" DisplayField="abbr" ValueField="id" FieldLabel="Nombre del Album"
                 StoreID="Store1" Editable="false" TypeAhead="true" Mode="Local" ForceSelection="true"
-                EmptyText="Seleccione un album..." Resizable="true" SelectOnFocus="true" />
+                EmptyText="Seleccione un album..." Resizable="true" SelectOnFocus="true" />--%>
             <ext:FileUploadField ID="FileUploadField1" runat="server" EmptyText="Select an image"
                 FieldLabel="Photo" ButtonText="" Icon="ImageAdd" >
                 <DirectEvents>
