@@ -18,6 +18,7 @@ namespace Picasa.net
 {
     public partial class _Default : System.Web.UI.Page
     {
+        PicasaEntry DeleteAlbum;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!X.IsAjaxRequest)
@@ -32,18 +33,51 @@ namespace Picasa.net
                     List<object> data = new List<object>(feed.Entries.Count);
                     foreach (PicasaEntry entry in feed.Entries)
                     {
-                        Console.WriteLine(entry.Title.Text);
                         data.Add(new
                         {
                             name = entry.Title.Text,
                             url = entry.Content.AbsoluteUri,
                         });
                     }
+                    //this.Store1.T
                     this.Store1.DataSource = data;
                     this.Store1.DataBind();
-
                 }
             }
         }
+
+        public void Button1_Click(object sender, EventArgs e)
+        {
+            X.Msg.Show(new MessageBoxConfig
+            {
+                Title = "Add Image"
+            }
+            );
+        }
+
+        public void AlbumDelete_Click(object sender, EventArgs e)
+        {
+            if (Session["user"] != null && Request.QueryString["album"] != null)
+            {
+                PicasaService tmp = Session["service"] as PicasaService;
+                //PicasaFeed feed = tmp.Query(query);
+
+                //List<object> data = new List<object>(feed.Entries.Count);
+                //foreach (PicasaEntry entry in feed.Entries)
+                //{
+                //    data.Add(new
+                //    {
+                //        name = entry.Title.Text,
+                //        url = entry.Content.AbsoluteUri,
+                //    });
+                //}
+                //entry.Delete();
+                //X.Msg.Show(new MessageBoxConfig
+                //{
+                //    Title = "Album Borrado Exitosamente"
+                //}
+                //);
+            }
+        }   
     }
 }

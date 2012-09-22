@@ -42,8 +42,8 @@ namespace Picasa.net
             else if (Request.QueryString["token"] != null)
             {
                 User u = new User();
-                u.Username = "diegoturciostc@gmail.com";
-                u.Password = "87654321q";
+                u.Username = "ederas@gmail.com";
+                u.Password = "deras.rodas@2011";
 
                 PicasaService.setUserCredentials(u.Username, u.Password);
 

@@ -29,7 +29,7 @@
            
             Collapsible="true" 
             Layout="Fit"
-            Title="Albums">
+            Title="Fotos">
             <Items>
                 <ext:DataView ID="ImageView" runat="server"
                     StoreID="Store1"
@@ -58,7 +58,26 @@
                         <ext:GenericPlugin runat="server" InstanceName="Ext.DataView.DragSelector" />
                     </Plugins>
                 </ext:DataView>
-            </Items>       
+            </Items> 
+   
+
+   
+            <Buttons>
+                <ext:Button ID="Button1" runat="server" Text="Delete Album">
+                    <DirectEvents>
+                        <Click OnEvent="AlbumDelete_Click" />
+                    </DirectEvents>
+                </ext:Button>
+            </Buttons>
+
+            <Buttons>
+                <ext:Button ID="Button2" runat="server" Text="Delete Selected Image">
+                    <DirectEvents>
+                        <Click OnEvent="Button1_Click" />
+                    </DirectEvents>
+                </ext:Button>
+            </Buttons>
+                  
         </ext:Panel>
   </div>
    
